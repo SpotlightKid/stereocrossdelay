@@ -1,6 +1,6 @@
 # Stereo Cross Delay
 
-A stereo delay with cross feedback
+A stereo delay plugin with feedback and cross-mixing
 
 ## Formats
 

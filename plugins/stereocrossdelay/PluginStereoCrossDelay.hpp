@@ -57,11 +57,11 @@ protected:
     // Information
 
     const char* getLabel() const noexcept override {
-        return "StereoCrossDelay";
+        return "Stereo Cross-Delay";
     }
 
     const char* getDescription() const override {
-        return "A stereo delay with cross feedback";
+        return "A stereo delay with feedback and cross-mixing";
     }
 
     const char* getMaker() const noexcept override {
@@ -86,7 +86,7 @@ protected:
     //
     // Get a proper plugin UID and fill it in here!
     int64_t getUniqueId() const noexcept override {
-        return d_cconst('a', 'b', 'c', 'd');
+        return d_cconst('S', 't', 'X', 'D');
     }
 
     // -------------------------------------------------------------------
@@ -130,8 +130,8 @@ struct Preset {
 
 const Preset factoryPresets[] = {
     {
-        "Default",
-        {-6.0f,}
+        "Defaults",
+        {250.0, 0.75, 25.0, 12000.0, 60.0, 25.0, -6.0, 0.0}
     }
     //,{
     //    "Another preset",  // preset name
