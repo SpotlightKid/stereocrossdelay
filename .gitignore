@@ -19,3 +19,6 @@ bin/stereocrossdelay-dssi.*
 bin/stereocrossdelay-vst.*
 bin/stereocrossdelay.lv2/
 build/
+
+# Geany project files
+*.geany
