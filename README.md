@@ -2,15 +2,18 @@
 
 A stereo delay plugin with feedback and cross-mixing
 
+
 ## Formats
 
-All plugins in this collection come in the following plug-in formats:
+This plugin is available in the following plug-in formats by default:
 
-* LADSPA
-* LV2
-* VST2
+* [CLAP] (`de.chrisarndt.stereocrossdelay`)
+* [LADSPA] (`stereocrossdelay-ladspa.so`)
+* [LV2] (`https://chrisarndt.de/plugins/stereocrossdelay`)
+* [VST2][vst] (`stereocrossdelay-vst.so`)
+* [VST3][vst] (`stereocrossdelay.vst3`)
 
-The plugins depend on the host to provide a generic UI to control parameters.
+The plugin depends on the host to provide a generic UI to control parameters.
 
 
 ## Compiling
@@ -22,6 +25,14 @@ sub-modules) and simply run `make` in the project's root directory:
     $ git clone --recursive https://github.com/SpotlightKid/stereocrossdelay.git
     $ cd stereocrossdelay
     $ make
+
+To enable building additional plugin formats, which are not enabled by default,
+pass `BUILD_LADSPA=true` resp. `BUILD_VST2=true` to make. For example:
+
+    make BUILD_VST2=true
+
+The same settings must be passed to `make install` to also install optional
+plugin formats.
 
 
 ## Installation
@@ -42,11 +53,15 @@ actually installing them.
 You can also set the installation directory for each plugin format with a
 dedicated makefile variable.
 
+* CLAP: `CLAP_DIR` (`<prefix>/lib/clap`)
 * LADSPA: `LADSPA_DIR` (`<prefix>/lib/ladspa`)
 * LV2: `LV2_DIR` (`<prefix>/lib/lv2`)
-* VST2: `VST_DIR` (`<prefix>/lib/vst`)
+* VST2: `VST2_DIR` (`<prefix>/lib/vst`)
+* VST3: `VST3_DIR` (`<prefix>/lib/vst3`)
 
-Example: `make DESTDIR=/tmp/build-root VST_DIR=/usr/lib/lxvst install`
+Example:
+
+    make DESTDIR=/tmp/build-root VST2_DIR=/usr/lib/lxvst install
 
 To install the plugins only for your current user account, run
 `make install-user`.
@@ -54,11 +69,13 @@ To install the plugins only for your current user account, run
 Again, you can also set the installation directory for each plugin format with
 a dedicated makefile variable.
 
+* CLAP: `USER_CLAP_DIR` (`$HOME/.clap`)
 * LADSPA: `USER_LADSPA_DIR` (`$HOME/.ladspa`)
 * LV2: `USER_LV2_DIR` (`$HOME/.lv2`)
-* VST2: `USER_VST_DIR` (`$HOME/.vst`)
+* VST2: `USER_VST2_DIR` (`$HOME/.vst`)
+* VST3: `USER_VST3_DIR` (`$HOME/.vst3`)
 
-*Note: The given default values for all of the above listed environment
+*Note: The given default values for all of the above listed makefile
 variables differ depending on the target OS.*
 
 
@@ -68,7 +85,7 @@ variables differ depending on the target OS.*
   (`make`, etc.).
 
   Debian / Ubuntu users should install the `build-essential` package
-  to get these, Arch users the `base-devel` package group.
+  to get these, Arch users the `base-devel` meta package.
 
 * `patch`
 
@@ -76,17 +93,24 @@ variables differ depending on the target OS.*
 
 * The [faustpp] pre-processor and [FAUST] (optional)
 
-The [LV2], [LADSPA] and [VST2] (vestige) headers are included in the [DPF]
-framework, which is integrated as a Git sub-module. These need not be
-installed separately to build the software in the respective plug-in formats.
+The [CLAP], [LV2], [LADSPA], [VST2][vst] (Xaymar VST2SDK) and [VST3][vst]
+headers are included in the [DPF] framework, which is integrated as a Git
+sub-module. These need not be installed separately to build the software in
+the respective plug-in formats.
 
-`faustpp` and FAUST are only needed to re-generate C++ source and headers files
+`faustpp` and FAUST are only needed to re-generate C++ source and header files
 if the FAUST DSP source files in the `faust` directory are changed.
 
 
 ## Author
 
 This software was created by *Christopher Arndt*.
+
+
+## License
+
+This plugin is released under the *MIT* license. Please see the
+[LICENSE.md](./LICENSE.md) file for details.
 
 
 ## Acknowledgements
@@ -97,12 +121,12 @@ pre-processor.
 The project is built using the DISTRHO Plugin Framework ([DPF]) and set up
 with the [cookiecutter-dpf-faust] project template.
 
-
+[clap]: https://cleveraudio.org/
 [cookiecutter-dpf-faust]: https://github.com/SpotlightKid/cookiecutter-dpf-faust
-[DPF]: https://github.com/DISTRHO/DPF
-[FAUST]: https://faust.grame.fr/
+[dpf]: https://github.com/DISTRHO/DPF
+[faust]: https://faust.grame.fr/
 [faustpp]: https://github.com/jpcima/faustpp.git
-[LADSPA]: http://www.ladspa.org/
-[LV2]: http://lv2plug.in/
+[ladspa]: https://www.ladspa.org/
+[lv2]: https://lv2plug.in/
 [pkgconf]: https://github.com/pkgconf/pkgconf
-[VST2]: https://en.wikipedia.org/wiki/Virtual_Studio_Technology
+[vst]: https://en.wikipedia.org/wiki/Virtual_Studio_Technology
