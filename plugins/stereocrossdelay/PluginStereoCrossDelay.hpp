@@ -48,6 +48,19 @@ START_NAMESPACE_DISTRHO
 
 class PluginStereoCrossDelay : public Plugin {
 public:
+    enum Parameters {
+        p_delay_l,
+        p_delay_r,
+        p_feedback,
+        p_lp_cutoff,
+        p_hp_cutoff,
+        p_crossmix,
+        p_dry,
+        p_wet,
+        p_bypass_process,
+        paramCount
+    };
+
     PluginStereoCrossDelay();
 
     ~PluginStereoCrossDelay();
@@ -77,7 +90,7 @@ protected:
     }
 
     uint32_t getVersion() const noexcept override {
-        return d_version(0, 1, 0);
+        return d_version(0, 2, 0);
     }
 
     // Go to:
@@ -117,26 +130,48 @@ protected:
     // -------------------------------------------------------------------
 
 private:
-    double          fSampleRate;
-    StereoCrossDelay*     dsp;
+    StereoCrossDelay* dsp;
+    // sample rate
+    double sample_rate;
+    bool sr_changed;
+    // enable/bypass ramping
+    bool needs_ramp_down;
+    bool needs_ramp_up;
+    float ramp_down;
+    float ramp_up;
+    float ramp_up_step;
+    float ramp_down_step;
+    bool state_bypass;
+    bool old_bypass;
+    float param_bypass;
 
     DISTRHO_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(PluginStereoCrossDelay)
 };
 
 struct Preset {
     const char* name;
-    float params[StereoCrossDelay::NumParameters];
+    float params[PluginStereoCrossDelay::paramCount];
 };
 
 const Preset factoryPresets[] = {
-    {
-        "Defaults",
-        {250.0, 0.75, 25.0, 12000.0, 60.0, 25.0, -6.0, 0.0}
-    }
     //,{
-    //    "Another preset",  // preset name
-    //    {-14.0f, ...}      // array of StereoCrossDelay::NumParameters float param values
+    //    "Preset name",  // preset name
+    //    {0.0f, ...}     // array of PluginStereoCrossDelay::paramCount float param values
     //}
+    {
+        "Default",
+        {
+            250.0,    // p_delay_l
+            0.75,     // p_delay_r
+            25.0,     // p_feedback
+            12000.0,  // p_lp_cutoff
+            60.0,     // p_hp_cutoff
+            25.0,     // p_crossmix
+            0.0,      // p_dry
+            -6.0,     // p_wet
+            0.0       // p_bypass_process
+        }
+    }
 };
 
 const uint presetCount = sizeof(factoryPresets) / sizeof(Preset);
