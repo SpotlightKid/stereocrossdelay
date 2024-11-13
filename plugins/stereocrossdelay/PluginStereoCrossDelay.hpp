@@ -171,7 +171,9 @@ const Preset factoryPresets[] = {
             -6.0,     // p_wet
             0.0       // p_bypass_process
         }
-    }
+    },
+    {"Widener", {80.0, 0.95, 0.0, 3000.0, 80.0, 25.0, 0.0, -7.5, 0.0}},
+    {"Lead L/R", {333.34, 1.5, 40.0, 1000.0, 100.0, 0.0, 0.0, -12.0, 0.0}}
 };
 
 const uint presetCount = sizeof(factoryPresets) / sizeof(Preset);
