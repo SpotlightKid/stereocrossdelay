@@ -21,8 +21,8 @@ hp_cutoff = hslider("[4]Highpass[symbol: hp_cutoff][unit: hz][scale: log]", 60, 
 
 crossfeed = hslider("[5]Crossmix[symbol: crossmix][unit: %]", 25, 0, 100, 0.1) : si.smoo;
 
-wet = hslider("[6]Wet[symbol: wet][unit: db]", -6, -90, 6, 0.1) : si.smoo : ba.db2linear;
-dry = hslider("[7]Dry[symbol: dry][unit: db]", 0, -90, 6, 0.1) : si.smoo : ba.db2linear;
+dry = hslider("[6]Dry[symbol: dry][unit: db]", 0, -90, 6, 0.1) : si.smoo : ba.db2linear;
+wet = hslider("[7]Wet[symbol: wet][unit: db]", -6, -90, 6, 0.1) : si.smoo : ba.db2linear;
 
 
 // processing blocks

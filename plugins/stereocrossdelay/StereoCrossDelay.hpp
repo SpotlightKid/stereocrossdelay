@@ -6,9 +6,9 @@
 // Source: stereocrossdelay.dsp
 // Name: StereoCrossDelay
 // Author: Christopher Arndt
-// Copyright: 
+// Copyright:
 // License: MIT license
-// Version: 
+// Version:
 //------------------------------------------------------------------------------
 
 
@@ -48,9 +48,9 @@ public:
         p_lp_cutoff,
         p_hp_cutoff,
         p_crossmix,
-        p_wet,
         p_dry,
-        
+        p_wet,
+
     };
 
     struct ParameterRange {
@@ -72,40 +72,40 @@ public:
     float get_parameter(unsigned index) const noexcept;
     void set_parameter(unsigned index, float value) noexcept;
 
-    
+
     float get_delay_l() const noexcept;
-    
+
     float get_delay_r() const noexcept;
-    
+
     float get_feedback() const noexcept;
-    
+
     float get_lp_cutoff() const noexcept;
-    
+
     float get_hp_cutoff() const noexcept;
-    
+
     float get_crossmix() const noexcept;
-    
-    float get_wet() const noexcept;
-    
+
     float get_dry() const noexcept;
-    
-    
+
+    float get_wet() const noexcept;
+
+
     void set_delay_l(float value) noexcept;
-    
+
     void set_delay_r(float value) noexcept;
-    
+
     void set_feedback(float value) noexcept;
-    
+
     void set_lp_cutoff(float value) noexcept;
-    
+
     void set_hp_cutoff(float value) noexcept;
-    
+
     void set_crossmix(float value) noexcept;
-    
-    void set_wet(float value) noexcept;
-    
+
     void set_dry(float value) noexcept;
-    
+
+    void set_wet(float value) noexcept;
+
 
 public:
     class BasicDsp;
