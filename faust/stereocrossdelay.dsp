@@ -12,7 +12,7 @@ MAX_DELAY = 2.0;
 
 // params
 time_l = ba.sec2samp(hslider("[0]Delay L[symbol: delay_l][unit: ms]", 500.0, 0, MAX_DELAY * 1000, 0.1) : si.smoo);
-ratio_r = hslider("[1]Delay R Ratio[symbol: delay_r][style:menu{'1:1':1;'1:2':2;'2:1':0.5;'}]", 0.75, 0.001, 2, 0.01);
+ratio_r = hslider("[1]Delay R Ratio[symbol: delay_r][style:menu{'1:1':1;'1:2':2;'2:1':0.5;}]", 0.75, 0.001, 2, 0.01);
 
 feedback = hslider("[2]Feedback[symbol: feedback][unit: %]", 20, 0, 100, 0.1) : si.smoo;
 
