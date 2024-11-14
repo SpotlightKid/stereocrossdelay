@@ -2,8 +2,9 @@
 
 A stereo delay plugin with feedback and cross-mixing
 
-<p align="center"><img title="Generic LV2 UI in Ardour 8" src="screenshot-ardour8.png" width="516"></center>
+<p align="center"><img title="Generic LV2 UI in Ardour 8" src="screenshot-ardour8.png" width="516"></p>
 
+Audio demo (Ogg Vorbis file): [two guitar phrases using different presets](./demo-guitar.ogg)
 
 ## Formats
 
